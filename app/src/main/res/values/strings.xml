@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">calculate-university-lesson-average-app</string>
+    <string name="calculate_btn">Hesapla</string>
 </resources>
