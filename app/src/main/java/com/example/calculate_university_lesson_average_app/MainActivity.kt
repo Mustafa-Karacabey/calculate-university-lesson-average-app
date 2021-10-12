@@ -15,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    //TODO : Design Düzenlenecek
+    //TODO : Koddaki bug bulunacak
+    //TODO : TOAST LİBRARY KULLANILACAK
     private val LESSONNAMES = arrayOf("Matematik", "Türkçe", "Algoritma", "Fizik", "Biyoloji")
     private var Lessons : ArrayList<Lesson> = ArrayList<Lesson>()
 
