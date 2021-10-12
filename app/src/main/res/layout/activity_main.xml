@@ -12,12 +12,12 @@
         android:layout_height="200dp">
 
         <AutoCompleteTextView
-            android:id="@+id/auto__edit_text"
+            android:id="@+id/auto_edit_text"
             android:layout_width="227dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
-            android:text="AutoCompleteTextView"
+            android:hint="ders adı giriniz"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,9 +27,9 @@
             android:layout_height="67dp"
             android:layout_marginEnd="16dp"
             android:text="Ekle"
-            app:layout_constraintBottom_toBottomOf="@+id/auto__edit_text"
+            app:layout_constraintBottom_toBottomOf="@+id/auto_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/auto__edit_text" />
+            app:layout_constraintTop_toTopOf="@+id/auto_edit_text" />
 
         <Spinner
             android:id="@+id/spn_credit"
@@ -40,7 +40,7 @@
             app:layout_constraintEnd_toStartOf="@+id/spn_notes"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/auto__edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/auto_edit_text" />
 
         <Spinner
             android:id="@+id/spn_notes"
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/spn_credit"
-            app:layout_constraintTop_toBottomOf="@+id/auto__edit_text" />
+            app:layout_constraintTop_toBottomOf="@+id/auto_edit_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -65,14 +65,22 @@
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/myRootLinearLayout">
+        </LinearLayout>
+
     </ScrollView>
 
     <Button
+        android:id="@+id/btn-hesapla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calculate_btn"
+        android:layout_gravity="center"
         android:onClick="calculateAverage"
-        android:layout_gravity="center">
+        android:text="@string/calculate_btn">
 
 
     </Button>
