@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     //TODO : Design Düzenlenecek
     //TODO : Koddaki bug bulunacak
     //TODO : TOAST LİBRARY KULLANILACAK
+    //TODO : Crash Olan Yerleri Düzelt
     private val LESSONNAMES = arrayOf("Matematik", "Türkçe", "Algoritma", "Fizik", "Biyoloji")
     private var Lessons : ArrayList<Lesson> = ArrayList<Lesson>()
 
@@ -134,7 +135,7 @@ class MainActivity : AppCompatActivity() {
             "AA" -> value = 4.0
             "BA" -> value = 3.5
             "BB" -> value = 3.0
-            "BC" -> value = 2.5
+            "CB" -> value = 2.5
             "CC" -> value = 2.0
             "DC" -> value = 1.5
             "DD" -> value = 1.0
