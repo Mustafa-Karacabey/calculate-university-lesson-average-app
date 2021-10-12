@@ -4,16 +4,27 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
+import android.widget.Toast.LENGTH_SHORT
+import androidx.core.view.iterator
 import kotlinx.android.synthetic.main.activity_add_new_lesson.view.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private val LESSONNAMES = arrayOf("Matematik", "Türkçe", "Algoritma", "Fizik", "Biyoloji")
+    private var Lessons : ArrayList<Lesson> = ArrayList<Lesson>()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var adaptor = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, LESSONNAMES)
+        auto_edit_text.setAdapter(adaptor)
 
         if(myRootLinearLayout.childCount == 0 )
             btn_hesapla.visibility = View.INVISIBLE
@@ -21,10 +32,9 @@ class MainActivity : AppCompatActivity() {
             btn_hesapla.visibility = View.VISIBLE
 
 
-
         btn_add.setOnClickListener {
             if(! auto_edit_text.text.isNullOrEmpty()) {
-                var inflater = LayoutInflater.from(this)
+                var inflater = LayoutInflater.from(this) //dinamik olarak data geç
                 var new_lesson_view = inflater.inflate(R.layout.activity_add_new_lesson, null) //Ben kendim eklicem rootuna
 
 
@@ -36,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 new_lesson_view.newLesson.setText(lessonName)
                 new_lesson_view.newSpinnerCredit.setSelection(getSpinnerIndex(spn_credit, lessonCredit))
                 new_lesson_view.newSpinnerNote.setSelection(getSpinnerIndex(spn_notes, lessonNote))
+
+                new_lesson_view.newLesson.setAdapter(adaptor)
 
                 new_lesson_view.btn_sil.setOnClickListener {
                     myRootLinearLayout.removeView(new_lesson_view)
@@ -54,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Ders adı giriniz", LENGTH_LONG).show()
             }
         }
+
     }
 
     fun clearScreen() {
@@ -76,9 +89,57 @@ class MainActivity : AppCompatActivity() {
         return index
     }
 
-    fun calculateAverage(v : View) {
+    fun calculateAverage(view: View) {
+
+        var sumNote = 0.0
+        var sumCredit = 0.0
+        var counter = 0
+
+
+
+        if(myRootLinearLayout.childCount != 0 ) {
+            for (item in myRootLinearLayout) {
+
+                var lesson : Lesson = Lesson(
+                    item.newLesson.text.toString(),
+                    item.newSpinnerCredit.getItemAtPosition(counter).toString().toInt(),
+                    item.newSpinnerNote.getItemAtPosition(counter).toString()
+                )
+                counter++
+                Lessons.add(lesson)
+            }
+
+            for (item in Lessons) {
+                sumNote += convertLetterToValue(item.note)
+                sumCredit += item.credit
+            }
+
+            Toast.makeText(this, "Ortalamanız= ${sumNote / sumCredit}", LENGTH_LONG)
+
+
+        }else {
+            Toast.makeText(this, "Hiçbir Ders Yok", LENGTH_SHORT)
+        }
+
+
 
     }
+
+    fun convertLetterToValue(item : String) : Double {
+        var value : Double = 0.0
+        when (item) {
+            "AA" -> value = 4.0
+            "BA" -> value = 3.5
+            "BB" -> value = 3.0
+            "BC" -> value = 2.5
+            "CC" -> value = 2.0
+            "DC" -> value = 1.5
+            "DD" -> value = 1.0
+            "FF" -> value = 0.0
+        }
+        return value
+    }
+
 }
 
 

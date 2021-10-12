@@ -12,13 +12,13 @@
         <item>FF</item>
     </string-array>
     <string-array name="Lesson_Credis">
-        <item>1 Credit</item>
-        <item>2 Credit</item>
-        <item>3 Credit</item>
-        <item>4 Credit</item>
-        <item>5 Credit</item>
-        <item>10 Credit</item>
-        <item>20 Credit</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
     </string-array>
 
 </resources>
